@@ -1,4 +1,6 @@
-# DocumentIntegrityProvider
+# Document Integrity Provider
+
+## 👨‍🏫 Coordonator: Adrian Iftene
 
 ## 🚀 Team:
 - Aungurenci Tudor Paul
