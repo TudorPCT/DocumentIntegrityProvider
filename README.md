@@ -5,7 +5,7 @@
 ## 🚀 Team:
 - Aungurenci Tudor Paul
   - 📧 aungurencitudor@gmail.com
-  - ![](https://dcbadge.vercel.app/api/shield/342356658900697108)
+  - ![](https://dcbadge.vercel.app/api/shield/342356658900697108?theme=discord)
 - Pasat Tudor Cosmin
   - 📧 tcosmin.pasat@gmail.com
   - ![](https://dcbadge.vercel.app/api/shield/336957618331451403)
