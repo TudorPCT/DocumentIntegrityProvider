@@ -10,7 +10,7 @@
   - 📧 tcosmin.pasat@gmail.com
   - ![](https://dcbadge.vercel.app/api/shield/336957618331451403)
 - Pușcașu Bogdan
-  - 📧 
+  - 📧 bogdan.puscasu2001@gmail.com
  
 ### [📋 Jira Board](https://dipaset.atlassian.net/jira/software/projects/DIP/boards/1)
 
