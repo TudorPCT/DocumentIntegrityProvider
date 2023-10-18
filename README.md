@@ -1,6 +1,6 @@
 # Document Integrity Provider
 
-## 👨‍🏫 Coordonator: Adrian Iftene
+## 👨‍🏫 Coordonators: Adrian Iftene & Cosmin Irimia
 
 ## 🚀 Team:
 - Aungurenci Tudor Paul
