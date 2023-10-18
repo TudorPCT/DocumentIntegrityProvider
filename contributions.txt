@@ -5,7 +5,7 @@ Pasat Tudor Cosmin
  - Setup Github
  - Setup Jira
  - Researched relevant articles
- - Wrote the 1.1 and 3.1 sections of the state-of-the-art
+ - Added sections 1.1, 1.4, 2.1, 2.2, 2.3, 4.1 of the state-of-the-art
 
 Pușcașu Bogdan
  - Research
