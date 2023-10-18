@@ -8,4 +8,5 @@ Pasat Tudor Cosmin
  - Wrote the 1.1 and 3.1 sections of the state-of-the-art
 
 Pușcașu Bogdan
- -
+ - Research
+ - Added sections 1.2, 1.3
