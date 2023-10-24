@@ -1,12 +1,18 @@
 Aungurenci Tudor Paul
- -
+ - Research relevant articles
+ - Added section 1.5 of the state-of-the-art
+ - Added System Actors section to the requirements analysis document
   
 Pasat Tudor Cosmin
  - Setup Github
  - Setup Jira
  - Researched relevant articles
  - Added sections 1.1, 1.4, 2.1, 2.2, 2.3, 4.1 of the state-of-the-art
+ - Added Short Description and Main Modules sections to the requirements analysis document
+ - Modelled the System Diagram and the Flow Diagram 
 
 Pușcașu Bogdan
- - Research
- - Added sections 1.2, 1.3
+ - Research relevant articles
+ - Added sections 1.2, 1.3 of the state-of-the-art
+ - Added Functional & Non-functional Requirements section to the requirements analysis document
+ - Modelled the Class Diagram and Sequence Diagram
