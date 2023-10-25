@@ -14,4 +14,6 @@
  
 ### [📋 Jira Board](https://dipaset.atlassian.net/jira/software/projects/DIP/boards/1)
 
-### [✨ State-of-the-art](https://docs.google.com/document/d/1tROLwQRGvezJjZCHqUJ0WgnEx1-eDNITIXtZpmLofoo/edit)
+### [✨ State-of-the-art](https://docs.google.com/document/d/1tROLwQRGvezJjZCHqUJ0WgnEx1-eDNITIXtZpmLofoo)
+
+### [✨ Requirements Analysis & Diagram Modelling](https://docs.google.com/document/d/12R_X9sphpCDcIN0owSe3UAm7GuCrStmYaHbhTZKErIc)
