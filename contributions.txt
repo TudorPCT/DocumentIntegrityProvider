@@ -2,6 +2,7 @@ Aungurenci Tudor Paul
  - Research relevant articles
  - Added section 1.5 of the state-of-the-art
  - Added System Actors section to the requirements analysis document
+ - Use-Case Diagrams
   
 Pasat Tudor Cosmin
  - Setup Github
