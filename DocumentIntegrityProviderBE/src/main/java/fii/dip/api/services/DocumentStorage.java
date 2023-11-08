@@ -1,10 +1,13 @@
-package fii.dip.api.controllers;
+package fii.dip.api.services;
 
 import fii.dip.api.models.Document;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class DocumentStorage {
     // Save a document
     public void saveDocument(Document document) {

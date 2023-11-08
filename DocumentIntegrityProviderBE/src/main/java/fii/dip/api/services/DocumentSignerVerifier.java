@@ -1,4 +1,4 @@
-package fii.dip.api.controllers;
+package fii.dip.api.services;
 
 import fii.dip.api.models.Document;
 
