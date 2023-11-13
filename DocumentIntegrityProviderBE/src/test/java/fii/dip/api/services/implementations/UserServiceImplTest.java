@@ -68,6 +68,31 @@ class UserServiceImplTest {
         assertThat(response).isEqualTo("User registered successfully");
     }
 
+    @Test
+    public void returnError_WhenUserNotFound() {
+        User user = userBuilder();
+
+        given(userRepository.findById(user.getId())).willReturn(java.util.Optional.empty());
+
+        assertThrows(UsernameNotFoundException.class, () -> userServiceImpl.loadUserById(user.getId()));
+    }
+
+    @Test
+    public void returnError_WhenUserAlreadyExists() {
+        NewUserDto newUserDto = NewUserDto.builder()
+                .email("cosmin@gmail.com")
+                .password("cosmin")
+                .build();
+
+        User user = userBuilder();
+
+        given(userRepository.findByEmail(newUserDto.getEmail())).willReturn(java.util.Optional.of(user));
+
+        assertThrows(EmailAlreadyExistsException.class, () -> userServiceImpl.register(newUserDto));
+    }
+
+
+
     private User userBuilder() {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         return User.builder()
