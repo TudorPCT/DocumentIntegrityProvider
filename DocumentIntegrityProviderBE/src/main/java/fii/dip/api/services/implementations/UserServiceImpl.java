@@ -26,11 +26,19 @@ public class UserServiceImpl implements UserService {
     public UserDetails loadUserById(String id) {
         Optional<User> user = userRepository.findById(id);
 
+        if (user.isEmpty()) {
+            throw new UserNotFoundException(id);
+        }
+
         return new UserSecurityDetails(user.get());
     }
 
     @Override
     public String register(NewUserDto newUserDto) {
+        Optional<User> user = userRepository.findByEmail(newUserDto.getEmail());
+
+        if(user.isPresent())
+            throw new EmailAlreadyExistsException(String.format("User with email %s already exists", newUserDto.getEmail()));
 
         User newUser = new User();
 

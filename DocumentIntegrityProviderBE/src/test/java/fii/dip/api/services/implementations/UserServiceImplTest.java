@@ -2,6 +2,7 @@ package fii.dip.api.services.implementations;
 
 import fii.dip.api.dtos.NewUserDto;
 import fii.dip.api.exceptions.EmailAlreadyExistsException;
+import fii.dip.api.exceptions.UserNotFoundException;
 import fii.dip.api.models.Role;
 import fii.dip.api.models.User;
 import fii.dip.api.repositories.UserRepository;
@@ -74,7 +75,7 @@ class UserServiceImplTest {
 
         given(userRepository.findById(user.getId())).willReturn(java.util.Optional.empty());
 
-        assertThrows(UsernameNotFoundException.class, () -> userServiceImpl.loadUserById(user.getId()));
+        assertThrows(UserNotFoundException.class, () -> userServiceImpl.loadUserById(user.getId()));
     }
 
     @Test
