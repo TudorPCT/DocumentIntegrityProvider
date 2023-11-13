@@ -1,6 +1,7 @@
 package fii.dip.api.exceptionHandlers;
 
 import fii.dip.api.exceptions.EmailAlreadyExistsException;
+import fii.dip.api.exceptions.InvalidEmailFormatException;
 import fii.dip.api.exceptions.ServiceUnavailableException;
 import fii.dip.api.exceptions.UserNotFoundException;
 import io.jsonwebtoken.JwtException;
@@ -35,6 +36,12 @@ public class AppExceptionHandler {
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(EmailAlreadyExistsException.class)
     public ResponseEntity<String> handleEmailAlreadyExistsException(EmailAlreadyExistsException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("{\"message\": \"" + ex.getMessage() + "\"}");
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(EmailAlreadyExistsException.class)
+    public ResponseEntity<String> handleInvalidEmailFormat(InvalidEmailFormatException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body("{\"message\": \"" + ex.getMessage() + "\"}");
     }
 

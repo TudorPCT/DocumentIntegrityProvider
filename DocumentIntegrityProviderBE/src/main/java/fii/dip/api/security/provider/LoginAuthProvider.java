@@ -8,7 +8,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 @RequiredArgsConstructor
 public class LoginAuthProvider implements AuthenticationProvider {
     private final UserSecurityDetailsService userSecurityDetailsService;
