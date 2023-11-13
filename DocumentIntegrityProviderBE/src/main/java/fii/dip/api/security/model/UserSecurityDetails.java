@@ -3,9 +3,11 @@ package fii.dip.api.security.model;
 import fii.dip.api.models.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 @RequiredArgsConstructor
 public class UserSecurityDetails implements UserDetails {
@@ -13,7 +15,7 @@ public class UserSecurityDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return List.of(new SimpleGrantedAuthority(user.getRole().toString()));
     }
 
     @Override

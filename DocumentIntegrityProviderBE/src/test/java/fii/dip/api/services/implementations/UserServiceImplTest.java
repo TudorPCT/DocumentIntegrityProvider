@@ -14,10 +14,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -30,6 +32,9 @@ class UserServiceImplTest {
     @Mock
     private UserRepository userRepository;
 
+    @Mock
+    PasswordEncoder passwordEncoder;
+
     @Test
     public void returnUserDetails_WhenLoadUserById_ForProvidedId() {
         User user = userBuilder();
@@ -39,7 +44,7 @@ class UserServiceImplTest {
         UserDetails userDetails = userServiceImpl.loadUserById(user.getId());
 
         assertThat(userDetails).isNotNull();
-        assertThat(userDetails.getUsername()).isEqualTo(user.getEmail());
+        assertThat(userDetails.getUsername()).isEqualTo(user.getId());
         assertThat(userDetails.getPassword()).isEqualTo(user.getPassword());
         assertThat(userDetails.getAuthorities()).isNotNull();
         assertThat(userDetails.getAuthorities().size()).isEqualTo(1);
@@ -55,8 +60,8 @@ class UserServiceImplTest {
 
         User user = userBuilder();
 
-        given(userRepository.findByEmail(newUserDto.getEmail())).willReturn(java.util.Optional.empty());
-        given(userRepository.save(user)).willReturn(user);
+        given(userRepository.save(any(User.class))).willReturn(user);
+        given(passwordEncoder.encode(newUserDto.getPassword())).willReturn("cosmin");
 
         String response = userServiceImpl.register(newUserDto);
 
@@ -68,7 +73,7 @@ class UserServiceImplTest {
         return User.builder()
                 .id("1")
                 .email("cosmin@gmail.com")
-                .password(passwordEncoder.encode("cosmin"))
+                .password("cosmin")
                 .role(Role.ROLE_USER)
                 .version(1)
                 .isAccountNonLocked(true)
