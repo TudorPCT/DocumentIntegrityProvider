@@ -2,8 +2,8 @@ package fii.dip.api.services;
 
 import fii.dip.api.models.Document;
 
-import java.security.PrivateKey;
-import java.security.PublicKey;
+import java.security.*;
+import java.util.Base64;
 
 public class DocumentSignerVerifier {
     private PrivateKey privateKey;
@@ -12,7 +12,17 @@ public class DocumentSignerVerifier {
     private static DocumentSignerVerifier instance;
 
     private DocumentSignerVerifier() {
-        // Initialize the private and public keys
+        // Initialize the private and public keys (Example: Generate key pair for RSA)
+        try {
+            KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+            keyPairGenerator.initialize(2048); // You can adjust the key size based on your security requirements
+            KeyPair keyPair = keyPairGenerator.generateKeyPair();
+
+            this.privateKey = keyPair.getPrivate();
+            this.publicKey = keyPair.getPublic();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
     }
 
     public static DocumentSignerVerifier getInstance() {
@@ -24,13 +34,31 @@ public class DocumentSignerVerifier {
 
     // Method to sign a document and return the digital signature
     public String signDocument(Document document) {
-        // Implement the signing logic and return the digital signature as a String
-        return null;
+        try {
+            Signature signature = Signature.getInstance("SHA256withRSA");
+            signature.initSign(privateKey);
+            signature.update(document.getContent().getBytes());
+
+            byte[] signatureBytes = signature.sign();
+            return Base64.getEncoder().encodeToString(signatureBytes);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     // Method to verify the integrity of a document using its digital signature
     public boolean verifyDocument(Document document, String digitalSignature) {
-        // Implement the verification logic and return true if the document is valid and false if it has been tampered with.
-        return false;
+        try {
+            Signature signature = Signature.getInstance("SHA256withRSA");
+            signature.initVerify(publicKey);
+            signature.update(document.getContent().getBytes());
+
+            byte[] signatureBytes = Base64.getDecoder().decode(digitalSignature);
+            return signature.verify(signatureBytes);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
