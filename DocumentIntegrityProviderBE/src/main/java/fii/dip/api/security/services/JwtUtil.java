@@ -1,12 +1,17 @@
 package fii.dip.api.security.services;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 import java.util.function.Function;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.GrantedAuthority;
 
 @Service
 public class JwtUtil implements Serializable {
@@ -15,19 +20,34 @@ public class JwtUtil implements Serializable {
     private String secret;
 
     public String generateToken(UserDetails UserDetails) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        List<String> authorities = UserDetails.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .toList();
+        return Jwts.builder()
+                .setSubject(UserDetails.getUsername())
+                .claim("authorities", authorities)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
+                .signWith(SignatureAlgorithm.HS512, secret)
+                .compact();
     }
 
     public String getUsernameFromToken(String token) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Jwts.parser()
+                .setSigningKey(secret)
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
     }
 
     public boolean validateToken(String token) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        final Date expirationDate = getClaimFromToken(token, Claims::getExpiration);
+        return expirationDate.after(new Date());
     }
 
     public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        final Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        return claimsResolver.apply(claims);
     }
 
 }

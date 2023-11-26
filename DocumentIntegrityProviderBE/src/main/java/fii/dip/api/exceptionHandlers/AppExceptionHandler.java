@@ -1,9 +1,6 @@
 package fii.dip.api.exceptionHandlers;
 
-import fii.dip.api.exceptions.EmailAlreadyExistsException;
-import fii.dip.api.exceptions.InvalidEmailFormatException;
-import fii.dip.api.exceptions.ServiceUnavailableException;
-import fii.dip.api.exceptions.UserNotFoundException;
+import fii.dip.api.exceptions.*;
 import io.jsonwebtoken.JwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +37,7 @@ public class AppExceptionHandler {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(EmailAlreadyExistsException.class)
+    @ExceptionHandler(InvalidEmailFormatException.class)
     public ResponseEntity<String> handleInvalidEmailFormat(InvalidEmailFormatException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body("{\"message\": \"" + ex.getMessage() + "\"}");
     }
@@ -54,6 +51,12 @@ public class AppExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> handleValidationException(MethodArgumentNotValidException ex) {
+        return ResponseEntity.badRequest().body("{\"message\": \"" + ex.getMessage() + "\"}");
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(PublicKeyNotFoundException.class)
+    public ResponseEntity<String> handlePublicKeyNotFoundException(PublicKeyNotFoundException ex) {
         return ResponseEntity.badRequest().body("{\"message\": \"" + ex.getMessage() + "\"}");
     }
 

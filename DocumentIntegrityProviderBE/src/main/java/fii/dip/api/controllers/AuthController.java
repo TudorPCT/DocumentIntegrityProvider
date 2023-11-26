@@ -1,6 +1,7 @@
 package fii.dip.api.controllers;
 
 import fii.dip.api.dtos.NewUserDto;
+import fii.dip.api.models.User;
 import fii.dip.api.services.interfaces.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,15 @@ public class AuthController {
 
     @PostMapping("register")
     public ResponseEntity<String> register(@Valid @RequestBody NewUserDto newUserDto) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if(newUserDto.getEmail() == null || newUserDto.getPassword() == null)
+            return ResponseEntity.badRequest().build();
+
+        User response = userService.register(newUserDto);
+
+        if (response == null)
+            return ResponseEntity.badRequest().build();
+
+        return ResponseEntity.ok("{\"message\": \"\"User registered successfully\"\"}");
     }
 
 }

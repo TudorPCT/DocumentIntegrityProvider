@@ -3,12 +3,15 @@ package fii.dip.api.security.provider;
 import fii.dip.api.security.services.UserSecurityDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 @RequiredArgsConstructor
 public class LoginAuthProvider implements AuthenticationProvider {
     private final UserSecurityDetailsService userSecurityDetailsService;
@@ -16,11 +19,20 @@ public class LoginAuthProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        return null;
+        String email = authentication.getName();
+        String password = (String) authentication.getCredentials();
+
+        UserDetails userSecurityDetails = userSecurityDetailsService.loadUserByUsername(email);
+
+        if (passwordEncoder.matches(password, userSecurityDetails.getPassword())) {
+            return new UsernamePasswordAuthenticationToken(email, password, userSecurityDetails.getAuthorities());
+        } else {
+            throw new BadCredentialsException("Email or password are invalid!");
+        }
     }
 
     @Override
     public boolean supports(Class<?> authentication) {
-        return false;
+        return UsernamePasswordAuthenticationToken.class.equals(authentication);
     }
 }

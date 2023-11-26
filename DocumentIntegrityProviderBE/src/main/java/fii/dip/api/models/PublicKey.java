@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -15,15 +16,20 @@ import static jakarta.persistence.TemporalType.TIMESTAMP;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "app_users")
+@Table(name = "public_keys")
 @EntityListeners(AuditingEntityListener.class)
 public class PublicKey {
 
     @Id
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "uuid2")
+    private String id;
+
+    @Column(columnDefinition = "TEXT")
     private String publicKey;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "app_users_id", nullable = false)
     private User user;
 
     @Version
@@ -32,4 +38,9 @@ public class PublicKey {
     @CreatedDate
     @Temporal(TIMESTAMP)
     private LocalDateTime createdAt;
+
+    public PublicKey(String publicKey, User user) {
+        this.publicKey = publicKey;
+        this.user = user;
+    }
 }

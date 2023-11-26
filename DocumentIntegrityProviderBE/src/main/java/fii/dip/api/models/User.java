@@ -26,7 +26,7 @@ public class User {
 
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "uuid2")
     @Column(length = 36, nullable = false, updatable = false, insertable = false)
     private String id;
 
@@ -41,7 +41,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<PublicKey> publicKeys;
 
-    @Column(columnDefinition="tinyint(1) default 1")
+    @Column(columnDefinition="boolean default TRUE")
     private boolean isAccountNonLocked = true;
 
     @Version

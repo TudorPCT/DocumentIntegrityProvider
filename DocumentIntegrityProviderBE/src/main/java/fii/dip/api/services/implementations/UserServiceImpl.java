@@ -8,6 +8,7 @@ import fii.dip.api.models.User;
 import fii.dip.api.repositories.UserRepository;
 import fii.dip.api.security.model.UserSecurityDetails;
 import fii.dip.api.services.interfaces.UserService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -34,7 +35,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String register(NewUserDto newUserDto) {
+    @Transactional
+    public User register(NewUserDto newUserDto) {
         Optional<User> user = userRepository.findByEmail(newUserDto.getEmail());
 
         if(user.isPresent())
@@ -48,8 +50,9 @@ public class UserServiceImpl implements UserService {
 
         newUser.setRole(Role.ROLE_USER);
 
+
         userRepository.save(newUser);
 
-        return "User registered successfully";
+        return newUser;
     }
 }
