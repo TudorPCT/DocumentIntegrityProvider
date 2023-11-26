@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import fii.dip.api.security.services.JwtUtil;
 import fii.dip.api.services.interfaces.UserService;
 
-@Component
+//@Component
 @RequiredArgsConstructor
 public class TokenAuthProvider implements AuthenticationProvider {
     private final UserService userService;
