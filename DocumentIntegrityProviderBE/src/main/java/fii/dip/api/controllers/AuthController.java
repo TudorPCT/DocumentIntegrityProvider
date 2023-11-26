@@ -1,6 +1,7 @@
 package fii.dip.api.controllers;
 
 import fii.dip.api.dtos.NewUserDto;
+import fii.dip.api.models.User;
 import fii.dip.api.services.interfaces.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,9 +25,12 @@ public class AuthController {
         if(newUserDto.getEmail() == null || newUserDto.getPassword() == null)
             return ResponseEntity.badRequest().build();
 
-        String response = userService.register(newUserDto);
+        User response = userService.register(newUserDto);
 
-        return ResponseEntity.ok("{\"message\": \"" + response + "\"}");
+        if (response == null)
+            return ResponseEntity.badRequest().build();
+
+        return ResponseEntity.ok("{\"message\": \"\"User registered successfully\"\"}");
     }
 
 }

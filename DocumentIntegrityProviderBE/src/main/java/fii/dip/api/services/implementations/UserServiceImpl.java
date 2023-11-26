@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public String register(NewUserDto newUserDto) {
+    public User register(NewUserDto newUserDto) {
         Optional<User> user = userRepository.findByEmail(newUserDto.getEmail());
 
         if(user.isPresent())
@@ -53,6 +53,6 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(newUser);
 
-        return "User registered successfully";
+        return newUser;
     }
 }
