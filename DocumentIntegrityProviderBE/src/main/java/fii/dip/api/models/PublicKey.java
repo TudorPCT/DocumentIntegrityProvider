@@ -15,7 +15,7 @@ import static jakarta.persistence.TemporalType.TIMESTAMP;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "app_users")
+@Table(name = "public_keys")
 @EntityListeners(AuditingEntityListener.class)
 public class PublicKey {
 
@@ -23,7 +23,7 @@ public class PublicKey {
     private String publicKey;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "app_users_id", nullable = false)
     private User user;
 
     @Version

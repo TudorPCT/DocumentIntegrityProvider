@@ -40,7 +40,7 @@ public class AppExceptionHandler {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(EmailAlreadyExistsException.class)
+    @ExceptionHandler(InvalidEmailFormatException.class)
     public ResponseEntity<String> handleInvalidEmailFormat(InvalidEmailFormatException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body("{\"message\": \"" + ex.getMessage() + "\"}");
     }

@@ -101,10 +101,10 @@ class UserServiceImplTest {
                 .email("cosmin@gmail.com")
                 .password("cosmin")
                 .role(Role.ROLE_USER)
-                .version(1)
-                .isAccountNonLocked(true)
-                .createdAt(LocalDateTime.of(2023, 11, 10, 1, 0))
-                .updatedAt(LocalDateTime.of(2023, 11, 10, 2, 0))
+//                .version(1)
+//                .isAccountNonLocked(true)
+//                .createdAt(LocalDateTime.of(2023, 11, 10, 1, 0))
+//                .updatedAt(LocalDateTime.of(2023, 11, 10, 2, 0))
                 .build();
     }
 

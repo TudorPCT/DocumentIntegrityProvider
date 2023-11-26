@@ -21,7 +21,12 @@ public class AuthController {
 
     @PostMapping("register")
     public ResponseEntity<String> register(@Valid @RequestBody NewUserDto newUserDto) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if(newUserDto.getEmail() == null || newUserDto.getPassword() == null)
+            return ResponseEntity.badRequest().build();
+
+        String response = userService.register(newUserDto);
+
+        return ResponseEntity.ok("{\"message\": \"" + response + "\"}");
     }
 
 }
