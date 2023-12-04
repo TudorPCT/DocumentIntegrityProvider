@@ -1,3 +1,4 @@
+from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 
@@ -10,8 +11,13 @@ class DigitalSigner:
         self.private_key = KeyManager.retrieve_private_key()
 
     def generate_signature(self, document):
+        document_hash = hashes.Hash(hashes.SHA256(), backend=default_backend())
+        document_hash.update(document.encode())
+        hashed_document = document_hash.finalize()
+
+        # Sign the hashed document
         signature = self.private_key.sign(
-            document,
+            hashed_document,
             padding.PSS(
                 mgf=padding.MGF1(hashes.SHA256()),
                 salt_length=padding.PSS.MAX_LENGTH
