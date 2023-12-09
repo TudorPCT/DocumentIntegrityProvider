@@ -1,7 +1,5 @@
 import PySimpleGUI as sg
 
-from components.login import Login
-
 
 class MainGUI:
     window = None
@@ -10,6 +8,7 @@ class MainGUI:
 
     def __new__(cls, *args, **kwargs):
         if not cls._instance:
+            from components.login import Login
             cls._instance = super(MainGUI, cls).__new__(cls, *args, **kwargs)
             sg.theme('DarkAmber')
             sg.set_options(font=('Helvetica', 15))

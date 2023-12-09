@@ -28,5 +28,11 @@ class Login:
                 break
             elif event == 'Login':
                 self.auth_service.login(values['email'], values['password'])
+            elif event == 'Register':
+                main_gui = MainGUI()
+                main_gui.window.Layout = Register.build_layout()
+                main_gui.current_component = Register(main_gui.window)
+                main_gui.run()
+                return
 
         self.window.close()
