@@ -5,7 +5,6 @@ from cryptography.hazmat.primitives.asymmetric import padding
 from crpyography.KeyManager import KeyManager
 
 
-## This class will load a file from the pc and use a private key to digitally sign it
 class DigitalSigner:
     def __init__(self):
         self.private_key = KeyManager.retrieve_private_key()

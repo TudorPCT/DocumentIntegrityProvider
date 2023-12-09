@@ -4,6 +4,7 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 
+from interceptors.auth_monitor import auth_monitor
 from services.AuthService import AuthService
 
 
@@ -39,6 +40,7 @@ class KeyManager:
             )
 
     @staticmethod
+    @auth_monitor
     def save_public_key(public_key, token):
         public_key_pem = public_key.public_bytes(
             encoding=serialization.Encoding.PEM,
@@ -59,8 +61,6 @@ class KeyManager:
 
         if response.status_code == 200:
             print("Public key sent successfully.")
-        else:
-            print(f"Error: {response.status_code}")
 
     @staticmethod
     def retrieve_private_key():
@@ -73,26 +73,20 @@ class KeyManager:
         return private_key
 
     @staticmethod
+    @auth_monitor
     def retrieve_public_key(public_key_id):
-        try:
-            url = os.environ['api_base_link'] + '/api/public-key/' + public_key_id
+        url = os.environ['api_base_link'] + '/api/public-key/' + public_key_id
 
-            response = requests.get(url)
+        response = requests.get(url)
 
-            if response.status_code == 200:
-                public_key_pem = response.json().get("publicKey")
-                if public_key_pem:
-                    public_key = serialization.load_pem_public_key(
-                        public_key_pem.encode('utf-8'),
-                        backend=default_backend()
-                    )
-                    return public_key
-                else:
-                    print("Public key not found in the JSON response.")
-                    return None
+        if response.status_code == 200:
+            public_key_pem = response.json().get("publicKey")
+            if public_key_pem:
+                public_key = serialization.load_pem_public_key(
+                    public_key_pem.encode('utf-8'),
+                    backend=default_backend()
+                )
+                return public_key
             else:
-                print(f"Error retrieving public key. Status code: {response.status_code}")
+                print("Public key not found in the JSON response.")
                 return None
-        except Exception as e:
-            print(f"Error loading public key: {e}")
-        return None

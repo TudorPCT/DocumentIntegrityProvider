@@ -3,6 +3,7 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 
 from crpyography.KeyManager import KeyManager
+from interceptors.auth_monitor import auth_monitor
 
 
 class DocumentVerifier:
