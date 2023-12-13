@@ -3,7 +3,7 @@ import PySimpleGUI as sg
 from services.AuthService import AuthService
 
 from components.main_gui import MainGUI
-from components.register import Register
+from components.login import Login
 
 class Register:
     window = None
@@ -17,7 +17,8 @@ class Register:
         layout = [
             [sg.Text('Email:'), sg.InputText(key='email')],
             [sg.Text('Password:'), sg.InputText(key='password')],
-            [sg.Button('Register')]
+            [sg.Text('Confirm Password:'), sg.InputText(key='confirm_password')],
+            [sg.Button('Register'), sg.Button('Back to Login')]
         ]
         return layout
 
@@ -27,9 +28,12 @@ class Register:
             if event == sg.WIN_CLOSED:
                 break
             elif event == 'Register':
+                self.auth_service.register(values['email'], values['password'])
+                sg.popup('Registration successful!', title='Success')
+            elif event == 'Back to Login':
                 main_gui = MainGUI()
-                main_gui.window.Layout = Register.build_layout()
-                main_gui.current_component = Register(main_gui.window)
+                main_gui.window.Layout = Login.build_layout()  # Assuming Login has a build_layout method
+                main_gui.current_component = Login(main_gui.window)
                 main_gui.run()
                 return
 
