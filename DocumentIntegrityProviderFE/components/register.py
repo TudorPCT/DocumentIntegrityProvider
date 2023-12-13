@@ -30,11 +30,14 @@ class Register:
             if event == sg.WIN_CLOSED:
                 break
             elif event == 'Register':
-                self.register_service.register(values['email'], values['password'])
-                sg.popup('Registration successful!', title='Success')
+                if values['password'] != values['confirm_password']:
+                    sg.popup('Passwords do not match!', title='Error')
+                else:
+                    self.register_service.register(values['email'], values['password'])
+                    sg.popup('Registration successful!', title='Success')
             elif event == 'Back to Login':
                 main_gui = MainGUI()
-                main_gui.window.Layout = Login.build_layout()  # Assuming Login has a build_layout method
+                main_gui.window.Layout = Login.build_layout()
                 main_gui.current_component = Login(main_gui.window)
                 main_gui.run()
                 return
