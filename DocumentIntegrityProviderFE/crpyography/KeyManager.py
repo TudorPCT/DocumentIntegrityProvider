@@ -4,6 +4,7 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 
+from interceptors.auth_interceptor import auth_interceptor
 from interceptors.auth_monitor import auth_monitor
 from services.AuthService import AuthService
 
@@ -41,7 +42,8 @@ class KeyManager:
 
     @staticmethod
     @auth_monitor
-    def save_public_key(public_key, token):
+    @auth_interceptor
+    def save_public_key(public_key, session):
         public_key_pem = public_key.public_bytes(
             encoding=serialization.Encoding.PEM,
             format=serialization.PublicFormat.SubjectPublicKeyInfo
@@ -51,13 +53,14 @@ class KeyManager:
         url = os.environ['api_base_link'] + '/api/public-key'
 
         headers = {
-            "Authorization": "Bearer" + token,
             "Content-Type": "application/json",
         }
 
+        session.headers.update(headers)
+
         body = {"publicKey": public_key_str}
 
-        response = requests.post(url, json=body, headers=headers)
+        response = session.post(url, json=body)
 
         if response.status_code == 200:
             print("Public key sent successfully.")
@@ -74,10 +77,11 @@ class KeyManager:
 
     @staticmethod
     @auth_monitor
-    def retrieve_public_key(public_key_id):
+    @auth_interceptor
+    def retrieve_public_key(public_key_id, session):
         url = os.environ['api_base_link'] + '/api/public-key/' + public_key_id
 
-        response = requests.get(url)
+        response = session.get(url)
 
         if response.status_code == 200:
             public_key_pem = response.json().get("publicKey")
