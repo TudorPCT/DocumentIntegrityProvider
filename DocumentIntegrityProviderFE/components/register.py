@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 
 from services.AuthService import AuthService
+from services.RegisterService import RegisterService
 
 from components.main_gui import MainGUI
 from components.login import Login
@@ -9,6 +10,7 @@ class Register:
     window = None
 
     def __init__(self, window):
+        self.register_service = RegisterService()
         self.auth_service = AuthService()
         self.window = window
 
@@ -28,7 +30,7 @@ class Register:
             if event == sg.WIN_CLOSED:
                 break
             elif event == 'Register':
-                self.auth_service.register(values['email'], values['password'])
+                self.register_service.register(values['email'], values['password'])
                 sg.popup('Registration successful!', title='Success')
             elif event == 'Back to Login':
                 main_gui = MainGUI()
@@ -38,3 +40,4 @@ class Register:
                 return
 
         self.window.close()
+
