@@ -29,6 +29,7 @@ class Login:
             elif event == 'Login':
                 self.auth_service.login(values['email'], values['password'])
             elif event == 'Register':
+                from components.register import Register
                 main_gui = MainGUI()
                 main_gui.window.Layout = Register.build_layout()
                 main_gui.current_component = Register(main_gui.window)
