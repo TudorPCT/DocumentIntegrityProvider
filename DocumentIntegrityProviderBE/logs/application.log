@@ -13666,3 +13666,140 @@ You may wish to exclude one of them to ensure predictable runtime behavior
 2023-12-19 20:46:16,605 INFO o.s.o.j.LocalContainerEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-12-19 20:46:16,608 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2023-12-19 20:46:16,611 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-12-19 22:00:21,892 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.0.Final
+2023-12-19 22:00:21,925 INFO f.d.a.DocumentIntegrityProviderBeApplication [restartedMain] Starting DocumentIntegrityProviderBeApplication using Java 20 with PID 27899 (/Users/cosminpasat/Desktop/MAN1/dip/DocumentIntegrityProvider/DocumentIntegrityProviderBE/target/classes started by cosminpasat in /Users/cosminpasat/Desktop/MAN1/dip/DocumentIntegrityProvider/DocumentIntegrityProviderBE)
+2023-12-19 22:00:21,928 INFO f.d.a.DocumentIntegrityProviderBeApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-12-19 22:00:21,971 INFO o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-12-19 22:00:21,971 INFO o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-12-19 22:00:22,714 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Multiple Spring Data modules found, entering strict repository configuration mode
+2023-12-19 22:00:22,716 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2023-12-19 22:00:22,759 INFO o.s.d.r.c.RepositoryConfigurationExtensionSupport [restartedMain] Spring Data JDBC - Could not safely identify store assignment for repository candidate interface fii.dip.api.repositories.PublicKeyRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-12-19 22:00:22,759 INFO o.s.d.r.c.RepositoryConfigurationExtensionSupport [restartedMain] Spring Data JDBC - Could not safely identify store assignment for repository candidate interface fii.dip.api.repositories.UserRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-12-19 22:00:22,760 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 38 ms. Found 0 JDBC repository interfaces.
+2023-12-19 22:00:22,769 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Multiple Spring Data modules found, entering strict repository configuration mode
+2023-12-19 22:00:22,770 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-19 22:00:22,802 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 27 ms. Found 2 JPA repository interfaces.
+2023-12-19 22:00:23,540 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-12-19 22:00:23,551 INFO o.a.c.h.Http11NioProtocol [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2023-12-19 22:00:23,553 INFO o.a.c.c.StandardService [restartedMain] Starting service [Tomcat]
+2023-12-19 22:00:23,553 INFO o.a.c.c.StandardEngine [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.15]
+2023-12-19 22:00:23,609 INFO o.a.c.c.C.[.[.[/] [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-12-19 22:00:23,610 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1639 ms
+2023-12-19 22:00:23,749 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-19 22:00:23,831 INFO o.h.Version [restartedMain] HHH000412: Hibernate ORM core version 6.2.13.Final
+2023-12-19 22:00:23,834 INFO o.h.c.Environment [restartedMain] HHH000406: Using bytecode reflection optimizer
+2023-12-19 22:00:24,198 INFO o.s.o.j.p.SpringPersistenceUnitInfo [restartedMain] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-19 22:00:24,241 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2023-12-19 22:00:25,506 INFO c.z.h.p.HikariPool [restartedMain] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@46fbd7b0
+2023-12-19 22:00:25,508 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2023-12-19 22:00:25,650 WARN o.h.o.deprecation [restartedMain] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2023-12-19 22:00:27,120 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [restartedMain] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-19 22:00:27,312 WARN o.h.e.j.s.SqlExceptionHelper [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-12-19 22:00:27,312 WARN o.h.e.j.s.SqlExceptionHelper [restartedMain] relation "public_keys" does not exist, skipping
+2023-12-19 22:00:27,396 WARN o.h.e.j.s.SqlExceptionHelper [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-12-19 22:00:27,396 WARN o.h.e.j.s.SqlExceptionHelper [restartedMain] table "app_users" does not exist, skipping
+2023-12-19 22:00:27,482 WARN o.h.e.j.s.SqlExceptionHelper [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-12-19 22:00:27,482 WARN o.h.e.j.s.SqlExceptionHelper [restartedMain] table "public_keys" does not exist, skipping
+2023-12-19 22:00:27,787 INFO o.s.o.j.LocalContainerEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-19 22:00:28,279 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-19 22:00:28,551 INFO o.s.s.w.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2e90f5b0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@462137fd, org.springframework.security.web.context.SecurityContextHolderFilter@14ed151b, org.springframework.security.web.header.HeaderWriterFilter@499da4c3, org.springframework.web.filter.CorsFilter@4519530a, org.springframework.security.web.authentication.logout.LogoutFilter@14f50767, fii.dip.api.security.filters.LoginAuthFilter@102dcc44, fii.dip.api.security.filters.TokenAuthenticationFilter@498f0a5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@327547e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5e49ab5c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@354a810f, org.springframework.security.web.access.ExceptionTranslationFilter@794901e0, org.springframework.security.web.access.intercept.AuthorizationFilter@44af87cc]
+2023-12-19 22:00:28,706 WARN o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [restartedMain] Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2023-12-19 22:00:28,999 INFO o.s.b.d.a.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-12-19 22:00:29,017 INFO o.a.c.h.Http11NioProtocol [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2023-12-19 22:00:29,035 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-12-19 22:00:29,044 INFO f.d.a.DocumentIntegrityProviderBeApplication [restartedMain] Started DocumentIntegrityProviderBeApplication in 7.451 seconds (process running for 8.585)
+2023-12-19 22:00:32,849 INFO o.s.o.j.LocalContainerEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-19 22:00:32,851 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-12-19 22:00:33,686 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-12-19 22:01:41,367 INFO o.s.t.c.s.AnnotationConfigContextLoaderUtils [main] Could not detect default configuration classes for test class [fii.dip.api.DocumentIntegrityProviderBeApplicationTests]: DocumentIntegrityProviderBeApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-12-19 22:01:41,528 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [main] Found @SpringBootConfiguration fii.dip.api.DocumentIntegrityProviderBeApplication for test class fii.dip.api.DocumentIntegrityProviderBeApplicationTests
+2023-12-19 22:01:41,817 INFO o.s.b.d.r.RestartApplicationListener [main] Restart disabled due to context in which it is running
+2023-12-19 22:01:42,086 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.0.Final
+2023-12-19 22:01:42,094 WARN o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer [main] 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/Users/cosminpasat/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/Users/cosminpasat/.m2/repository/org/json/json/20230227/json-20230227.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2023-12-19 22:01:42,122 INFO f.d.a.DocumentIntegrityProviderBeApplicationTests [main] Starting DocumentIntegrityProviderBeApplicationTests using Java 20 with PID 27918 (started by cosminpasat in /Users/cosminpasat/Desktop/MAN1/dip/DocumentIntegrityProvider/DocumentIntegrityProviderBE)
+2023-12-19 22:01:42,125 INFO f.d.a.DocumentIntegrityProviderBeApplicationTests [main] No active profile set, falling back to 1 default profile: "default"
+2023-12-19 22:01:43,123 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2023-12-19 22:01:43,125 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2023-12-19 22:01:43,183 INFO o.s.d.r.c.RepositoryConfigurationExtensionSupport [main] Spring Data JDBC - Could not safely identify store assignment for repository candidate interface fii.dip.api.repositories.PublicKeyRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-12-19 22:01:43,183 INFO o.s.d.r.c.RepositoryConfigurationExtensionSupport [main] Spring Data JDBC - Could not safely identify store assignment for repository candidate interface fii.dip.api.repositories.UserRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-12-19 22:01:43,184 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 51 ms. Found 0 JDBC repository interfaces.
+2023-12-19 22:01:43,198 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Multiple Spring Data modules found, entering strict repository configuration mode
+2023-12-19 22:01:43,199 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-19 22:01:43,234 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 31 ms. Found 2 JPA repository interfaces.
+2023-12-19 22:01:44,084 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-19 22:01:44,192 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.2.13.Final
+2023-12-19 22:01:44,196 INFO o.h.c.Environment [main] HHH000406: Using bytecode reflection optimizer
+2023-12-19 22:01:44,456 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-19 22:01:44,506 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2023-12-19 22:01:45,526 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@75507e68
+2023-12-19 22:01:45,530 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-12-19 22:01:45,657 WARN o.h.o.deprecation [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2023-12-19 22:01:47,080 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-19 22:01:47,599 INFO o.s.o.j.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-19 22:01:48,313 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-12-19 22:01:48,564 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5e834f3a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5bb00dcc, org.springframework.security.web.context.SecurityContextHolderFilter@35c646b5, org.springframework.security.web.header.HeaderWriterFilter@4873c645, org.springframework.web.filter.CorsFilter@57ce8f63, org.springframework.security.web.authentication.logout.LogoutFilter@38ebf8dc, fii.dip.api.security.filters.LoginAuthFilter@221383c9, fii.dip.api.security.filters.TokenAuthenticationFilter@50a2034c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6c07666f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3f9e38d4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1d92d132, org.springframework.security.web.access.ExceptionTranslationFilter@5fe5f2f0, org.springframework.security.web.access.intercept.AuthorizationFilter@54a2ff94]
+2023-12-19 22:01:49,207 WARN o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [main] Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2023-12-19 22:01:49,506 INFO f.d.a.DocumentIntegrityProviderBeApplicationTests [main] Started DocumentIntegrityProviderBeApplicationTests in 7.708 seconds (process running for 13.175)
+2023-12-19 22:01:49,555 INFO o.s.t.c.s.AnnotationConfigContextLoaderUtils [main] Could not detect default configuration classes for test class [fii.dip.api.controllers.PublicKeyControllerTest]: PublicKeyControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-12-19 22:01:49,578 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [main] Found @SpringBootConfiguration fii.dip.api.DocumentIntegrityProviderBeApplication for test class fii.dip.api.controllers.PublicKeyControllerTest
+2023-12-19 22:01:49,581 INFO o.s.b.d.r.RestartApplicationListener [main] Restart disabled due to context in which it is running
+2023-12-19 22:01:49,600 WARN o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer [main] 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/Users/cosminpasat/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/Users/cosminpasat/.m2/repository/org/json/json/20230227/json-20230227.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2023-12-19 22:01:49,602 INFO f.d.a.c.PublicKeyControllerTest [main] Starting PublicKeyControllerTest using Java 20 with PID 27918 (started by cosminpasat in /Users/cosminpasat/Desktop/MAN1/dip/DocumentIntegrityProvider/DocumentIntegrityProviderBE)
+2023-12-19 22:01:49,602 INFO f.d.a.c.PublicKeyControllerTest [main] No active profile set, falling back to 1 default profile: "default"
+2023-12-19 22:01:49,873 WARN o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [main] Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2023-12-19 22:01:49,922 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4be7661, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@349c9bfa, org.springframework.security.web.context.SecurityContextHolderFilter@3c0403a, org.springframework.security.web.header.HeaderWriterFilter@3366a998, org.springframework.security.web.csrf.CsrfFilter@43b3d197, org.springframework.security.web.authentication.logout.LogoutFilter@7408b3db, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5e18309e, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@7a2b8501, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@1479c527, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7af45006, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5ea206bc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7c87c960, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4c55d3ce, org.springframework.security.web.access.ExceptionTranslationFilter@4edd8b5b, org.springframework.security.web.access.intercept.AuthorizationFilter@462ccaa8]
+2023-12-19 22:01:49,966 INFO o.s.b.t.m.w.SpringBootMockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-12-19 22:01:49,966 INFO o.s.t.w.s.TestDispatcherServlet [main] Initializing Servlet ''
+2023-12-19 22:01:49,967 INFO o.s.t.w.s.TestDispatcherServlet [main] Completed initialization in 1 ms
+2023-12-19 22:01:49,978 INFO f.d.a.c.PublicKeyControllerTest [main] Started PublicKeyControllerTest in 0.397 seconds (process running for 13.647)
+2023-12-19 22:01:50,585 INFO o.s.t.c.s.AnnotationConfigContextLoaderUtils [main] Could not detect default configuration classes for test class [fii.dip.api.controllers.AuthControllerTest]: AuthControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-12-19 22:01:50,591 INFO o.s.b.t.c.SpringBootTestContextBootstrapper [main] Found @SpringBootConfiguration fii.dip.api.DocumentIntegrityProviderBeApplication for test class fii.dip.api.controllers.AuthControllerTest
+2023-12-19 22:01:50,596 INFO o.s.b.d.r.RestartApplicationListener [main] Restart disabled due to context in which it is running
+2023-12-19 22:01:50,616 WARN o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer [main] 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/Users/cosminpasat/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/Users/cosminpasat/.m2/repository/org/json/json/20230227/json-20230227.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2023-12-19 22:01:50,617 INFO f.d.a.c.AuthControllerTest [main] Starting AuthControllerTest using Java 20 with PID 27918 (started by cosminpasat in /Users/cosminpasat/Desktop/MAN1/dip/DocumentIntegrityProvider/DocumentIntegrityProviderBE)
+2023-12-19 22:01:50,618 INFO f.d.a.c.AuthControllerTest [main] No active profile set, falling back to 1 default profile: "default"
+2023-12-19 22:01:50,867 WARN o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [main] Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2023-12-19 22:01:50,892 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@41cc3795, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6f50f047, org.springframework.security.web.context.SecurityContextHolderFilter@4465d4ce, org.springframework.security.web.header.HeaderWriterFilter@71e7b3c9, org.springframework.security.web.csrf.CsrfFilter@1703b09a, org.springframework.security.web.authentication.logout.LogoutFilter@388b4f68, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@67ee26af, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@5d186b14, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@791d785c, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@57cc535, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4e683bb8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@112dfb03, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1a2b5f27, org.springframework.security.web.access.ExceptionTranslationFilter@64476bb5, org.springframework.security.web.access.intercept.AuthorizationFilter@58decd96]
+2023-12-19 22:01:50,900 INFO o.s.b.t.m.w.SpringBootMockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-12-19 22:01:50,900 INFO o.s.t.w.s.TestDispatcherServlet [main] Initializing Servlet ''
+2023-12-19 22:01:50,901 INFO o.s.t.w.s.TestDispatcherServlet [main] Completed initialization in 1 ms
+2023-12-19 22:01:50,907 INFO f.d.a.c.AuthControllerTest [main] Started AuthControllerTest in 0.31 seconds (process running for 14.575)
+2023-12-19 22:01:50,913 INFO o.s.b.t.m.w.SpringBootMockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-12-19 22:01:50,913 INFO o.s.t.w.s.TestDispatcherServlet [main] Initializing Servlet ''
+2023-12-19 22:01:50,914 INFO o.s.t.w.s.TestDispatcherServlet [main] Completed initialization in 1 ms
+2023-12-19 22:01:50,946 INFO o.s.b.t.m.w.SpringBootMockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-12-19 22:01:50,946 INFO o.s.t.w.s.TestDispatcherServlet [main] Initializing Servlet ''
+2023-12-19 22:01:50,946 INFO o.s.t.w.s.TestDispatcherServlet [main] Completed initialization in 0 ms
+2023-12-19 22:01:50,953 INFO o.s.b.t.m.w.SpringBootMockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-12-19 22:01:50,954 INFO o.s.t.w.s.TestDispatcherServlet [main] Initializing Servlet ''
+2023-12-19 22:01:50,954 INFO o.s.t.w.s.TestDispatcherServlet [main] Completed initialization in 0 ms
+2023-12-19 22:01:50,964 INFO o.s.b.t.m.w.SpringBootMockServletContext [main] Initializing Spring TestDispatcherServlet ''
+2023-12-19 22:01:50,964 INFO o.s.t.w.s.TestDispatcherServlet [main] Initializing Servlet ''
+2023-12-19 22:01:50,964 INFO o.s.t.w.s.TestDispatcherServlet [main] Completed initialization in 0 ms
+2023-12-19 22:01:51,189 INFO o.s.o.j.LocalContainerEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-19 22:01:51,192 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-12-19 22:01:51,857 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
