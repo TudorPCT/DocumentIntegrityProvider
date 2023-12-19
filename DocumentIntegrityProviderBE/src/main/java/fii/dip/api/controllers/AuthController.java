@@ -15,11 +15,6 @@ public class AuthController {
 
     private final UserService userService;
 
-    @GetMapping("validate")
-    public ResponseEntity<Void> validate() {
-        return ResponseEntity.ok(null);
-    }
-
     @PostMapping("register")
     public ResponseEntity<String> register(@Valid @RequestBody NewUserDto newUserDto) {
         if(newUserDto.getEmail() == null || newUserDto.getPassword() == null)

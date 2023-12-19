@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,10 +17,10 @@ import org.springframework.web.bind.annotation.*;
 public class PublicKeyController {
     private final PublicKeyService publicKeyService;
 
-    @GetMapping("retrieve/{userId}")
-    public ResponseEntity<PublicKeyDto> retrieve(@PathVariable String userId) {
+    @GetMapping("retrieve/{id}")
+    public ResponseEntity<PublicKeyDto> retrieve(@PathVariable String id) {
         return new ResponseEntity<>(PublicKeyDto.builder()
-                    .publicKey(publicKeyService.getPublicKeyByUserId(userId).getPublicKey())
+                    .publicKey(publicKeyService.getPublicKeyById(id).getPublicKey())
                     .build(),
                 HttpStatus.OK);
     }
@@ -27,7 +28,7 @@ public class PublicKeyController {
     @PostMapping("add")
     public ResponseEntity<Void> add(@Valid @RequestBody PublicKeyDto publicKeyDto) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String userId = (String) authentication.getPrincipal();
+        String userId = ((UserDetails) authentication.getPrincipal()).getUsername();
 
         publicKeyService.addUserPublicKey(publicKeyDto.getPublicKey(), userId);
 

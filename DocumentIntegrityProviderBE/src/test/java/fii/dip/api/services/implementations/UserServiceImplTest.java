@@ -11,18 +11,15 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {
@@ -64,9 +61,9 @@ class UserServiceImplTest {
         given(userRepository.save(any(User.class))).willReturn(user);
         given(passwordEncoder.encode(newUserDto.getPassword())).willReturn("cosmin");
 
-        String response = userServiceImpl.register(newUserDto);
+        User response = userServiceImpl.register(newUserDto);
 
-        assertThat(response).isEqualTo("User registered successfully");
+        assertThat(response).isEqualTo(user);
     }
 
     @Test
@@ -95,16 +92,16 @@ class UserServiceImplTest {
 
 
     private User userBuilder() {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         return User.builder()
                 .id("1")
                 .email("cosmin@gmail.com")
                 .password("cosmin")
                 .role(Role.ROLE_USER)
-//                .version(1)
-//                .isAccountNonLocked(true)
-//                .createdAt(LocalDateTime.of(2023, 11, 10, 1, 0))
-//                .updatedAt(LocalDateTime.of(2023, 11, 10, 2, 0))
+                .version(1)
+                .isAccountNonLocked(true)
+                .createdAt(LocalDateTime.of(2023, 11, 10, 1, 0))
+                .updatedAt(LocalDateTime.of(2023, 11, 10, 2, 0))
                 .build();
     }
 

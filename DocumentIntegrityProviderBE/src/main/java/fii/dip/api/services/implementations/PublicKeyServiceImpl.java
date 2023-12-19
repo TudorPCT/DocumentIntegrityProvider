@@ -1,5 +1,6 @@
 package fii.dip.api.services.implementations;
 
+import fii.dip.api.exceptions.PublicKeyNotFoundException;
 import fii.dip.api.exceptions.UserNotFoundException;
 import fii.dip.api.models.PublicKey;
 import fii.dip.api.models.User;
@@ -17,8 +18,8 @@ public class PublicKeyServiceImpl implements PublicKeyService {
     private final PublicKeyRepository publicKeyRepository;
 
     @Override
-    public PublicKey getPublicKeyByUserId(String userId) {
-        return publicKeyRepository.findByUserId(userId).orElseThrow(() -> new UserNotFoundException("User not found"));
+    public PublicKey getPublicKeyById(String id) {
+        return publicKeyRepository.findById(id).orElseThrow(() -> new PublicKeyNotFoundException("Public key not found"));
     }
 
     @Override
@@ -28,7 +29,7 @@ public class PublicKeyServiceImpl implements PublicKeyService {
 
         PublicKey publicKeyEntity = new PublicKey(publicKey, owner);
 
-        publicKeyRepository.save(publicKeyEntity);
+        publicKeyEntity = publicKeyRepository.save(publicKeyEntity);
 
         return publicKeyEntity;
     }

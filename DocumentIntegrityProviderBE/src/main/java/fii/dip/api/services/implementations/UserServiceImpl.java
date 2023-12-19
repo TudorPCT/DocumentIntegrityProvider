@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
         newUser.setRole(Role.ROLE_USER);
 
 
-        userRepository.save(newUser);
+        newUser = userRepository.save(newUser);
 
         return newUser;
     }
