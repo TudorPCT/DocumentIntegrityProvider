@@ -1,9 +1,10 @@
 import os
-import requests
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 
+from interceptors.auth_interceptor import auth_interceptor
+from interceptors.auth_monitor import auth_monitor
 from services.AuthService import AuthService
 
 
@@ -39,7 +40,9 @@ class KeyManager:
             )
 
     @staticmethod
-    def save_public_key(public_key, token):
+    @auth_monitor
+    @auth_interceptor
+    def save_public_key(public_key, session):
         public_key_pem = public_key.public_bytes(
             encoding=serialization.Encoding.PEM,
             format=serialization.PublicFormat.SubjectPublicKeyInfo
@@ -49,18 +52,17 @@ class KeyManager:
         url = os.environ['api_base_link'] + '/api/public-key'
 
         headers = {
-            "Authorization": "Bearer" + token,
             "Content-Type": "application/json",
         }
 
+        session.headers.update(headers)
+
         body = {"publicKey": public_key_str}
 
-        response = requests.post(url, json=body, headers=headers)
+        response = session.post(url, json=body)
 
         if response.status_code == 200:
             print("Public key sent successfully.")
-        else:
-            print(f"Error: {response.status_code}")
 
     @staticmethod
     def retrieve_private_key():
@@ -73,26 +75,21 @@ class KeyManager:
         return private_key
 
     @staticmethod
-    def retrieve_public_key(public_key_id):
-        try:
-            url = os.environ['api_base_link'] + '/api/public-key/' + public_key_id
+    @auth_monitor
+    @auth_interceptor
+    def retrieve_public_key(public_key_id, session):
+        url = os.environ['api_base_link'] + '/api/public-key/' + public_key_id
 
-            response = requests.get(url)
+        response = session.get(url)
 
-            if response.status_code == 200:
-                public_key_pem = response.json().get("publicKey")
-                if public_key_pem:
-                    public_key = serialization.load_pem_public_key(
-                        public_key_pem.encode('utf-8'),
-                        backend=default_backend()
-                    )
-                    return public_key
-                else:
-                    print("Public key not found in the JSON response.")
-                    return None
+        if response.status_code == 200:
+            public_key_pem = response.json().get("publicKey")
+            if public_key_pem:
+                public_key = serialization.load_pem_public_key(
+                    public_key_pem.encode('utf-8'),
+                    backend=default_backend()
+                )
+                return public_key
             else:
-                print(f"Error retrieving public key. Status code: {response.status_code}")
+                print("Public key not found in the JSON response.")
                 return None
-        except Exception as e:
-            print(f"Error loading public key: {e}")
-        return None
