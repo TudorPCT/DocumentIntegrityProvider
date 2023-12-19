@@ -5,7 +5,10 @@ from cryptography.hazmat.primitives import hashes
 
 class DocumentSignerGUI:
     def __init__(self):
-        self.signer = DigitalSigner()
+        # self.signer = DigitalSigner()
+
+        sg.theme('Default1')
+        sg.set_options(font=('Helvetica', 15))
 
         layout = [
             [sg.Text("Select Document File:"), sg.Input(key="document_file"), sg.FileBrowse()],
@@ -13,7 +16,7 @@ class DocumentSignerGUI:
             [sg.Multiline(key="document_output", size=(40, 5))]
         ]
 
-        self.window = sg.Window("Document Signer", layout)
+        self.window = sg.Window("Document Signer", layout, size=(500, 300))
 
     def run(self):
         while True:
@@ -27,12 +30,13 @@ class DocumentSignerGUI:
                 if document_file:
                     with open(document_file, 'r') as file:
                         document_content = file.read()
-                    signature = self.signer.generate_signature(document_content)
-                    public_key_id = self.signer.get_public_key_id()
-                    signed_message = self.signer.create_signed_message(document_content.encode(), signature, public_key_id)
-                    self.window["document_output"].update(f"Document signed successfully!\nSigned Message:\n{signed_message.hex()}")
+                    # signature = self.signer.generate_signature(document_content)
+                    # public_key_id = self.signer.get_public_key_id()
+                    # signed_message = self.signer.create_signed_message(document_content.encode(), signature, public_key_id)
+                    # self.window["document_output"].update(f"Document signed successfully!\nSigned Message:\n{signed_message.hex()}")
 
         self.window.close()
+
 
 if __name__ == "__main__":
     app = DocumentSignerGUI()

@@ -14,16 +14,6 @@ class Register:
         self.auth_service = AuthService()
         self.window = window
 
-    @staticmethod
-    def build_layout():
-        layout = [
-            [sg.Text('Email:'), sg.InputText(key='email')],
-            [sg.Text('Password:'), sg.InputText(key='password')],
-            [sg.Text('Confirm Password:'), sg.InputText(key='confirm_password')],
-            [sg.Button('Register'), sg.Button('Back to Login')]
-        ]
-        return layout
-
     def run(self):
         while True:
             event, values = self.window.read()
@@ -35,10 +25,12 @@ class Register:
                 else:
                     self.register_service.register(values['email'], values['password'])
                     sg.popup('Registration successful!', title='Success')
-            elif event == 'Back to Login':
+            elif event == 'Login':
                 from components.login import Login
                 main_gui = MainGUI()
-                main_gui.window.Layout = Login.build_layout()
+                self.window['title'].update(value='Login')
+                self.window['confirm_password-label'].update(visible=False)
+                self.window['confirm_password'].update(visible=False)
                 main_gui.current_component = Login(main_gui.window)
                 main_gui.run()
                 return

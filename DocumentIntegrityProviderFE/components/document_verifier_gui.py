@@ -1,9 +1,13 @@
 import PySimpleGUI as sg
 from crpyography.DocumentVerifier import DocumentVerifier
 
+
 class DocumentVerifierGUI:
     def __init__(self):
         self.verifier = DocumentVerifier()
+
+        sg.theme('Default1')
+        sg.set_options(font=('Helvetica', 15))
 
         layout = [
             [sg.Text("Select Signed Message File:"), sg.Input(key="signed_message_file"), sg.FileBrowse()],
@@ -11,7 +15,7 @@ class DocumentVerifierGUI:
             [sg.Multiline(key="verification_output", size=(40, 5))]
         ]
 
-        self.window = sg.Window("Document Verifier", layout)
+        self.window = sg.Window("Document Verifier", layout, size=(500, 300))
 
     def run(self):
         while True:
@@ -29,6 +33,7 @@ class DocumentVerifierGUI:
                     self.window["verification_output"].update("Verification result printed in console.")
 
         self.window.close()
+
 
 if __name__ == "__main__":
     app = DocumentVerifierGUI()

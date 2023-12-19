@@ -14,8 +14,15 @@ class Login:
     @staticmethod
     def build_layout():
         layout = [
-            [sg.Text('Email:'), sg.InputText(key='email')],
+            [sg.Text('Login', font=('Helvetica', 25), key='title')],
+            [sg.Text('', font=('Helvetica', 10))],
+            [sg.Text('Email:       '), sg.InputText(key='email')],
+            [sg.Text('', font=('Helvetica', 7))],
             [sg.Text('Password:'), sg.InputText(key='password')],
+            [sg.Text('', font=('Helvetica', 7))],
+            [sg.Text('Confirm Password:', key='confirm_password-label', visible=False),
+             sg.InputText(key='confirm_password', visible=False)],
+            [sg.Text('', font=('Helvetica', 10))],
             [sg.Button('Login'), sg.Button('Register')]
         ]
         return layout
@@ -30,7 +37,9 @@ class Login:
             elif event == 'Register':
                 from components.register import Register
                 main_gui = MainGUI()
-                main_gui.window.Layout = Register.build_layout()
+                self.window['title'].update(value='Register')
+                self.window['confirm_password-label'].update(visible=True)
+                self.window['confirm_password'].update(visible=True)
                 main_gui.current_component = Register(main_gui.window)
                 main_gui.run()
                 return
