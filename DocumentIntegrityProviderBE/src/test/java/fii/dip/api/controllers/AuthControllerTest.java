@@ -81,7 +81,8 @@ class AuthControllerTest {
                         .with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(newUserDto)))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("message").value("User registered successfully"));
     }
 
     @Test

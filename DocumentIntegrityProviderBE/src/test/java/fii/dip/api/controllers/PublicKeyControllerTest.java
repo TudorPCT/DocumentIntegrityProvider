@@ -1,6 +1,7 @@
 package fii.dip.api.controllers;
 
 import fii.dip.api.dtos.PublicKeyDto;
+import fii.dip.api.exceptions.PublicKeyNotFoundException;
 import fii.dip.api.models.PublicKey;
 import fii.dip.api.models.Role;
 import fii.dip.api.models.User;
@@ -50,6 +51,20 @@ class PublicKeyControllerTest {
                         .with(user("1").password("admin").roles("USER")))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("publicKey").value(publicKey.getPublicKey()));
+
+    }
+
+    @Test
+    void returnError_WhenRetrieve_ForPublicKeyNotFound() throws Exception {
+
+        PublicKey publicKey = publicKeyBuilder();
+        given(publicKeyService.getPublicKeyById(publicKey.getId())).willThrow(new PublicKeyNotFoundException("Public key not found"));
+
+        mockMvc.perform(get("/api/public-key/retrieve/" + publicKey.getId()).with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .with(user("1").password("admin").roles("USER")))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("message").value("Public key not found"));
 
     }
 

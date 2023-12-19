@@ -21,11 +21,8 @@ public class TokenAuthProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String token = (String) (authentication.getCredentials());
         String id;
-        try{
-            id = jwtUtil.getUsernameFromToken(token);
-        } catch (Exception e){
-            throw new JwtException("Authentication error");
-        }
+
+        id = jwtUtil.getIdFromToken(token);
 
         if (id == null || !jwtUtil.validateToken(token)) {
             throw new JwtException("Authentication error");

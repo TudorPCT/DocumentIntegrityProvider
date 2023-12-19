@@ -1,0 +1,149 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PublicKeyServiceImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fii.dip.api.services.implementations</a>
+</div>
+
+<h1>Coverage Summary for Class: PublicKeyServiceImpl (fii.dip.api.services.implementations)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PublicKeyServiceImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">PublicKeyServiceImpl$$SpringCGLIB$$0</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fii.dip.api.services.implementations;
+&nbsp;
+&nbsp;import fii.dip.api.exceptions.PublicKeyNotFoundException;
+&nbsp;import fii.dip.api.exceptions.UserNotFoundException;
+&nbsp;import fii.dip.api.models.PublicKey;
+&nbsp;import fii.dip.api.models.User;
+&nbsp;import fii.dip.api.repositories.PublicKeyRepository;
+&nbsp;import fii.dip.api.repositories.UserRepository;
+&nbsp;import fii.dip.api.services.interfaces.PublicKeyService;
+&nbsp;import lombok.RequiredArgsConstructor;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;@Service
+<b class="fc">&nbsp;@RequiredArgsConstructor</b>
+&nbsp;public class PublicKeyServiceImpl implements PublicKeyService {
+&nbsp;
+&nbsp;    private final UserRepository userRepository;
+&nbsp;    private final PublicKeyRepository publicKeyRepository;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public PublicKey getPublicKeyById(String id) {
+<b class="fc">&nbsp;        return publicKeyRepository.findById(id).orElseThrow(() -&gt; new PublicKeyNotFoundException(&quot;Public key not found&quot;));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public PublicKey addUserPublicKey(String publicKey, String userId) {
+&nbsp;
+<b class="fc">&nbsp;        User owner = userRepository.findById(userId).orElseThrow(() -&gt; new UserNotFoundException(&quot;User not found&quot;));</b>
+&nbsp;
+<b class="fc">&nbsp;        PublicKey publicKeyEntity = new PublicKey(publicKey, owner);</b>
+&nbsp;
+<b class="fc">&nbsp;        publicKeyEntity = publicKeyRepository.save(publicKeyEntity);</b>
+&nbsp;
+<b class="fc">&nbsp;        return publicKeyEntity;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-19 20:46</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > TokenAuthProvider</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">fii.dip.api.security.provider</a>
+</div>
+
+<h1>Coverage Summary for Class: TokenAuthProvider (fii.dip.api.security.provider)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TokenAuthProvider</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package fii.dip.api.security.provider;
+&nbsp;
+&nbsp;import fii.dip.api.security.authentication.AuthenticationToken;
+&nbsp;import lombok.RequiredArgsConstructor;
+&nbsp;import org.springframework.security.authentication.AuthenticationProvider;
+&nbsp;import org.springframework.security.core.Authentication;
+&nbsp;import org.springframework.security.core.AuthenticationException;
+&nbsp;import org.springframework.stereotype.Component;
+&nbsp;import fii.dip.api.security.services.JwtUtil;
+&nbsp;import fii.dip.api.services.interfaces.UserService;
+&nbsp;import io.jsonwebtoken.JwtException;
+&nbsp;
+&nbsp;@Component
+<b class="fc">&nbsp;@RequiredArgsConstructor</b>
+&nbsp;public class TokenAuthProvider implements AuthenticationProvider {
+&nbsp;    private final UserService userService;
+&nbsp;    private final JwtUtil jwtUtil;
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+<b class="fc">&nbsp;        String token = (String) (authentication.getCredentials());</b>
+&nbsp;        String id;
+&nbsp;
+<b class="fc">&nbsp;        id = jwtUtil.getIdFromToken(token);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (id == null || !jwtUtil.validateToken(token)) {</b>
+<b class="fc">&nbsp;            throw new JwtException(&quot;Authentication error&quot;);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return new AuthenticationToken(userService.loadUserById(id), token);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean supports(Class&lt;?&gt; authentication) {
+<b class="fc">&nbsp;        return AuthenticationToken.class.equals(authentication);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-19 20:46</div>
+</div>
+</body>
+</html>

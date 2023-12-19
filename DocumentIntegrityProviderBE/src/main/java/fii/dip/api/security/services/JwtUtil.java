@@ -8,12 +8,14 @@ import java.util.function.Function;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.GrantedAuthority;
 
 @Service
+@Setter
 public class JwtUtil implements Serializable {
     private static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
     @Value("${jwt.secret}")
@@ -32,7 +34,7 @@ public class JwtUtil implements Serializable {
                 .compact();
     }
 
-    public String getUsernameFromToken(String token) {
+    public String getIdFromToken(String token) {
         return Jwts.parser()
                 .setSigningKey(secret)
                 .parseClaimsJws(token)
@@ -41,8 +43,12 @@ public class JwtUtil implements Serializable {
     }
 
     public boolean validateToken(String token) {
-        final Date expirationDate = getClaimFromToken(token, Claims::getExpiration);
-        return expirationDate.after(new Date());
+        try {
+            final Date expirationDate = getClaimFromToken(token, Claims::getExpiration);
+            return expirationDate.after(new Date());
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
