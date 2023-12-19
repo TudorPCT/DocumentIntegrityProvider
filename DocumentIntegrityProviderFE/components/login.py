@@ -1,7 +1,6 @@
 import PySimpleGUI as sg
 
 from components.main_gui import MainGUI
-from components.register import Register
 from services.AuthService import AuthService
 
 

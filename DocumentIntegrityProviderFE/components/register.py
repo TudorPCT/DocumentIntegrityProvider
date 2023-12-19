@@ -4,7 +4,7 @@ from services.AuthService import AuthService
 from services.RegisterService import RegisterService
 
 from components.main_gui import MainGUI
-from components.login import Login
+
 
 class Register:
     window = None
