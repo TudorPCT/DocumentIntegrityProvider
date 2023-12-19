@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > PublicKeyController</title>
+  <title>Coverage Report > GotlingTestEndpoint</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -21,7 +21,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">fii.dip.api.controllers</a>
 </div>
 
-<h1>Coverage Summary for Class: PublicKeyController (fii.dip.api.controllers)</h1>
+<h1>Coverage Summary for Class: GotlingTestEndpoint (fii.dip.api.controllers)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -40,7 +40,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">PublicKeyController</td>
+  <td class="name">GotlingTestEndpoint</td>
 <td class="coverageStat">
   <span class="percent">
     100%
@@ -54,7 +54,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (3/3)
+    (2/2)
   </span>
 </td>
 <td class="coverageStat">
@@ -62,7 +62,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (8/8)
+    (2/2)
   </span>
 </td>
 </tr>
@@ -76,40 +76,20 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package fii.dip.api.controllers;
 &nbsp;
-&nbsp;import fii.dip.api.dtos.PublicKeyDto;
-&nbsp;import fii.dip.api.services.interfaces.PublicKeyService;
-&nbsp;import jakarta.validation.Valid;
 &nbsp;import lombok.RequiredArgsConstructor;
-&nbsp;import org.springframework.http.HttpStatus;
-&nbsp;import org.springframework.http.ResponseEntity;
-&nbsp;import org.springframework.security.core.Authentication;
-&nbsp;import org.springframework.security.core.context.SecurityContextHolder;
-&nbsp;import org.springframework.security.core.userdetails.UserDetails;
-&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;import org.springframework.web.bind.annotation.RequestMapping;
+&nbsp;import org.springframework.web.bind.annotation.RestController;
 &nbsp;
 &nbsp;@RestController
-&nbsp;@RequestMapping(&quot;/api/public-key&quot;)
+&nbsp;@RequestMapping(&quot;/api/test&quot;)
 <b class="fc">&nbsp;@RequiredArgsConstructor</b>
-&nbsp;public class PublicKeyController {
-&nbsp;    private final PublicKeyService publicKeyService;
+&nbsp;public class GotlingTestEndpoint {
 &nbsp;
-&nbsp;    @GetMapping(&quot;retrieve/{id}&quot;)
-&nbsp;    public ResponseEntity&lt;PublicKeyDto&gt; retrieve(@PathVariable String id) {
-<b class="fc">&nbsp;        return new ResponseEntity&lt;&gt;(PublicKeyDto.builder()</b>
-<b class="fc">&nbsp;                    .publicKey(publicKeyService.getPublicKeyById(id).getPublicKey())</b>
-<b class="fc">&nbsp;                    .build(),</b>
-&nbsp;                HttpStatus.OK);
+&nbsp;    @RequestMapping(&quot;/hello&quot;)
+&nbsp;    public String hello() {
+<b class="fc">&nbsp;        return &quot;Hello World!&quot;;</b>
 &nbsp;    }
 &nbsp;
-&nbsp;    @PostMapping(&quot;add&quot;)
-&nbsp;    public ResponseEntity&lt;Void&gt; add(@Valid @RequestBody PublicKeyDto publicKeyDto) {
-<b class="fc">&nbsp;        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();</b>
-<b class="fc">&nbsp;        String userId = ((UserDetails) authentication.getPrincipal()).getUsername();</b>
-&nbsp;
-<b class="fc">&nbsp;        publicKeyService.addUserPublicKey(publicKeyDto.getPublicKey(), userId);</b>
-&nbsp;
-<b class="fc">&nbsp;        return ResponseEntity.ok(null);</b>
-&nbsp;    }
 &nbsp;}
 </code>
 </pre>
@@ -134,7 +114,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-12-19 20:46</div>
+    <div style="float:right;">generated on 2023-12-19 23:17</div>
 </div>
 </body>
 </html>
