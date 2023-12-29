@@ -18,8 +18,8 @@ public class PublicKeyServiceImpl implements PublicKeyService {
     private final PublicKeyRepository publicKeyRepository;
 
     @Override
-    public PublicKey getPublicKeyById(String id) {
-        return publicKeyRepository.findById(id).orElseThrow(() -> new PublicKeyNotFoundException("Public key not found"));
+    public PublicKey getPublicKeyByUserId(String userId) {
+        return publicKeyRepository.findByUserId(userId).orElseThrow(() -> new PublicKeyNotFoundException("Public key not found"));
     }
 
     @Override

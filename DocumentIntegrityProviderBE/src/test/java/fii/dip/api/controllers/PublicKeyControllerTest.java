@@ -44,9 +44,9 @@ class PublicKeyControllerTest {
     void returnPublicKey_WhenRetrieve() throws Exception {
 
         PublicKey publicKey = publicKeyBuilder();
-        given(publicKeyService.getPublicKeyById(publicKey.getId())).willReturn(publicKey);
+        given(publicKeyService.getPublicKeyByUserId(publicKey.getUser().getId())).willReturn(publicKey);
 
-        mockMvc.perform(get("/api/public-key/retrieve/" + publicKey.getId()).with(csrf())
+        mockMvc.perform(get("/api/public-key/" + publicKey.getUser().getId()).with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .with(user("1").password("admin").roles("USER")))
                 .andExpect(status().isOk())
@@ -58,9 +58,9 @@ class PublicKeyControllerTest {
     void returnError_WhenRetrieve_ForPublicKeyNotFound() throws Exception {
 
         PublicKey publicKey = publicKeyBuilder();
-        given(publicKeyService.getPublicKeyById(publicKey.getId())).willThrow(new PublicKeyNotFoundException("Public key not found"));
+        given(publicKeyService.getPublicKeyByUserId(publicKey.getUser().getId())).willThrow(new PublicKeyNotFoundException("Public key not found"));
 
-        mockMvc.perform(get("/api/public-key/retrieve/" + publicKey.getId()).with(csrf())
+        mockMvc.perform(get("/api/public-key/" + publicKey.getUser().getId()).with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .with(user("1").password("admin").roles("USER")))
                 .andExpect(status().isBadRequest())
@@ -76,7 +76,7 @@ class PublicKeyControllerTest {
 
         given(publicKeyService.addUserPublicKey(any(String.class), any(String.class))).willReturn(publicKey);
 
-        mockMvc.perform(post("/api/public-key/add").with(csrf())
+        mockMvc.perform(post("/api/public-key").with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(publicKeyDto))
                         .with(user("1").password("admin").roles("USER")))

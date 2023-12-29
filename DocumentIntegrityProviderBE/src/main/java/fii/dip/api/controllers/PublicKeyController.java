@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.*;
 public class PublicKeyController {
     private final PublicKeyService publicKeyService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PublicKeyDto> retrieve(@PathVariable String id) {
+    @GetMapping("/{userId}")
+    public ResponseEntity<PublicKeyDto> retrieve(@PathVariable String userId) {
         return new ResponseEntity<>(PublicKeyDto.builder()
-                    .publicKey(publicKeyService.getPublicKeyById(id).getPublicKey())
+                    .publicKey(publicKeyService.getPublicKeyByUserId(userId).getPublicKey())
                     .build(),
                 HttpStatus.OK);
     }

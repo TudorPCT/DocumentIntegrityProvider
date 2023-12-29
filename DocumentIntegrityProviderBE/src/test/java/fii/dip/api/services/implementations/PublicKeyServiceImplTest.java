@@ -38,9 +38,9 @@ class PublicKeyServiceImplTest {
 
         PublicKey publicKey = publicKeyBuilder();
 
-        given(publicKeyRepository.findById(any(String.class))).willReturn(java.util.Optional.of(publicKey));
+        given(publicKeyRepository.findByUserId(any(String.class))).willReturn(java.util.Optional.of(publicKey));
 
-        PublicKey publicKeyResult = publicKeyServiceImpl.getPublicKeyById(publicKey.getId());
+        PublicKey publicKeyResult = publicKeyServiceImpl.getPublicKeyByUserId(publicKey.getUser().getId());
 
         assertThat(publicKeyResult).isNotNull();
         assertThat(publicKeyResult).isEqualTo(publicKey);
@@ -49,9 +49,9 @@ class PublicKeyServiceImplTest {
     @Test
     void returnError_WhenGetPublicKeyByUserId_ForUnknownId() {
 
-        given(publicKeyRepository.findById(any(String.class))).willReturn(java.util.Optional.empty());
+        given(publicKeyRepository.findByUserId(any(String.class))).willReturn(java.util.Optional.empty());
 
-        assertThrows(PublicKeyNotFoundException.class, () -> publicKeyServiceImpl.getPublicKeyById("1"));
+        assertThrows(PublicKeyNotFoundException.class, () -> publicKeyServiceImpl.getPublicKeyByUserId("1"));
     }
 
     @Test
@@ -86,7 +86,6 @@ class PublicKeyServiceImplTest {
     }
 
     private User userBuilder() {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         return User.builder()
                 .id("1")
                 .email("cosmin@gmail.com")
