@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 
+from components.document_signer_gui import DocumentSignerGUI
 from services.AuthService import AuthService
 from services.RegisterService import RegisterService
 
@@ -25,6 +26,9 @@ class Register:
                 else:
                     self.register_service.register(values['email'], values['password'])
                     sg.popup('Registration successful!', title='Success')
+                    self.window.close()
+                    app = DocumentSignerGUI()
+                    app.run()
             elif event == 'Login':
                 from components.login import Login
                 main_gui = MainGUI()

@@ -3,27 +3,28 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 
 from crpyography.KeyManager import KeyManager
-from interceptors.auth_monitor import auth_monitor
+from crpyography.Util import read_file
+from services.AuthService import AuthService
 
 
 class DocumentVerifier:
     @staticmethod
     def extract_document_and_signature(signed_message):
         document, details = signed_message.split(b'\n\nSignature:\n', 1)
-        signature, public_key_id = details.split(b'\n\nPublicKeyId:\n', 1)
-        return document, signature, public_key_id
+        signature, user_id = details.split(b'\n\nUserId:\n', 1)
+        return document, signature, user_id
 
     @staticmethod
     def verify_signed_message(signed_message):
-        document, signature, public_key_id = DocumentVerifier.extract_document_and_signature(signed_message)
+        document, signature, user_id = DocumentVerifier.extract_document_and_signature(signed_message)
 
-        public_key = KeyManager.retrieve_public_key(public_key_id)
+        public_key = KeyManager.retrieve_public_key(user_id)
 
         if public_key is None:
             return
         
         document_hash = hashes.Hash(hashes.SHA256(), backend=default_backend())
-        document_hash.update(document.encode())
+        document_hash.update(document)
         hashed_document = document_hash.finalize()
 
         try:
@@ -37,5 +38,10 @@ class DocumentVerifier:
                 hashes.SHA256()
             )
             print("Signature is valid.")
+            return user_id
         except Exception as e:
             print("Signature is invalid:", e)
+
+    def verify_signed_document(self, document_path):
+        document = read_file(document_path)
+        return self.verify_signed_message(document)

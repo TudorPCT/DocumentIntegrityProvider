@@ -1,3 +1,5 @@
+import base64
+import json
 import os
 import requests
 
@@ -14,6 +16,15 @@ class AuthService:
 
     def get_auth_token(self):
         return self.auth_token
+
+    def get_user_id(self):
+        parts = self.auth_token.split('.')
+
+        encoded_payload = parts[1]
+
+        decoded_payload = base64.urlsafe_b64decode(encoded_payload + '==').decode('utf-8')
+
+        return json.loads(decoded_payload)['sub']
 
     def login(self, email, password):
         url = os.environ['api_base_link'] + '/api/auth/login'

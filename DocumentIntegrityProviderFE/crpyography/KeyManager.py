@@ -5,14 +5,12 @@ from cryptography.hazmat.primitives.asymmetric import rsa
 
 from interceptors.auth_interceptor import auth_interceptor
 from interceptors.auth_monitor import auth_monitor
-from services.AuthService import AuthService
 
 
 class KeyManager:
 
     @staticmethod
     def generate_keys():
-        auth_service = AuthService()
 
         private_key = rsa.generate_private_key(
             public_exponent=65537,
@@ -21,12 +19,12 @@ class KeyManager:
         )
         public_key = private_key.public_key()
 
-        KeyManager.save_keys(private_key, public_key, auth_service.get_auth_token())
+        KeyManager.save_keys(private_key, public_key)
 
     @staticmethod
-    def save_keys(private_key, public_key, token):
+    def save_keys(private_key, public_key):
         KeyManager.save_private_key(private_key)
-        KeyManager.save_public_key(public_key, token)
+        KeyManager.save_public_key(public_key)
 
     @staticmethod
     def save_private_key(private_key):
@@ -77,8 +75,8 @@ class KeyManager:
     @staticmethod
     @auth_monitor
     @auth_interceptor
-    def retrieve_public_key(public_key_id, session):
-        url = os.environ['api_base_link'] + '/api/public-key/' + public_key_id
+    def retrieve_public_key(user_id, session):
+        url = os.environ['api_base_link'] + '/api/public-key/' + user_id.decode('utf-8')
 
         response = session.get(url)
 

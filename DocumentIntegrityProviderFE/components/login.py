@@ -33,7 +33,11 @@ class Login:
             if event == sg.WIN_CLOSED:
                 break
             elif event == 'Login':
+                from components.document_signer_gui import DocumentSignerGUI
                 self.auth_service.login(values['email'], values['password'])
+                sg.popup('Login successful!', title='Success')
+                app = DocumentSignerGUI()
+                app.run()
             elif event == 'Register':
                 from components.register import Register
                 main_gui = MainGUI()

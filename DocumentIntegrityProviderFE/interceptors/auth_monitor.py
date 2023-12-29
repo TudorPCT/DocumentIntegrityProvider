@@ -7,7 +7,7 @@ from components.main_gui import MainGUI
 def auth_monitor(func):
     def wrapper(*args, **kwargs):
         try:
-            func(*args, **kwargs)
+            return func(*args, **kwargs)
         except requests.exceptions.HTTPError as err:
             if err.response.status_code == 401:
                 main_gui = MainGUI()

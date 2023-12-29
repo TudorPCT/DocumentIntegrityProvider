@@ -1,4 +1,3 @@
-import PySimpleGUI as sg
 import requests.hooks
 
 from components.login import Login
@@ -11,9 +10,10 @@ def auth_interceptor(func):
         try:
             auth_service = AuthService()
             session = requests.Session()
-            headers = {'Authorization': 'Bearer ' + auth_service.get_auth_token()}
-            session.headers.update(headers)
-            func(*args, **kwargs, session=session)
+            if auth_service.get_auth_token() is not None:
+                headers = {'Authorization': 'Bearer ' + auth_service.get_auth_token()}
+                session.headers.update(headers)
+            return func(*args, **kwargs, session=session)
         except requests.exceptions.HTTPError as err:
             if err.response.status_code == 401:
                 main_gui = MainGUI()
