@@ -10,6 +10,7 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 @Aspect
@@ -45,7 +46,7 @@ public class SecurityAspect {
     @Before("anyPublicKeyServiceMethod() && execution(* getPublicKeyByUserId*(..)) && args(userId, ..)")
     private void logGetPublicKeyByUserId(String userId){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String callerId = (String) authentication.getPrincipal();
+        String callerId = ((UserDetails) authentication.getPrincipal()).getUsername();
 
         log.info("Received request to get public key for user with ID: " + userId + " from user with ID: " + callerId);
     }
@@ -53,7 +54,7 @@ public class SecurityAspect {
     @Around("anyPublicKeyServiceMethod() && execution(* addUserPublicKey*(..))")
     private PublicKey logAddUserPublicKey(ProceedingJoinPoint joinPoint){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String userId = (String) authentication.getPrincipal();
+        String userId = ((UserDetails) authentication.getPrincipal()).getUsername();
 
         try {
             PublicKey publicKey = (PublicKey) joinPoint.proceed();

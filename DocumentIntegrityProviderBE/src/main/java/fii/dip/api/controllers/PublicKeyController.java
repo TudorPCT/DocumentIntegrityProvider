@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class PublicKeyController {
     private final PublicKeyService publicKeyService;
 
-    @GetMapping("retrieve/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<PublicKeyDto> retrieve(@PathVariable String id) {
         return new ResponseEntity<>(PublicKeyDto.builder()
                     .publicKey(publicKeyService.getPublicKeyById(id).getPublicKey())
@@ -25,10 +25,12 @@ public class PublicKeyController {
                 HttpStatus.OK);
     }
 
-    @PostMapping("add")
+    @PostMapping
     public ResponseEntity<Void> add(@Valid @RequestBody PublicKeyDto publicKeyDto) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userId = ((UserDetails) authentication.getPrincipal()).getUsername();
+
+        assert userId != null;
 
         publicKeyService.addUserPublicKey(publicKeyDto.getPublicKey(), userId);
 
