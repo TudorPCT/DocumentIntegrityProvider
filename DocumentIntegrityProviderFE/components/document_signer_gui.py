@@ -13,12 +13,15 @@ class DocumentSignerGUI:
         layout = [
             [sg.Text("Select Document File:"), sg.Input(key="document_file"), sg.FileBrowse()],
             [sg.Button("Sign Document"), sg.Button("Exit")],
-            [sg.Multiline(key="document_output", size=(40, 5))]
+            [sg.Multiline(key="document_output", size=(40, 5))],
+            [sg.Button("Go To Verify Signature")]
         ]
 
         self.window = sg.Window("Document Signer", layout, size=(500, 300))
 
     def run(self):
+        from components.document_verifier_gui import DocumentVerifierGUI
+
         while True:
             event, values = self.window.read()
 
@@ -34,6 +37,12 @@ class DocumentSignerGUI:
                     # public_key_id = self.signer.get_public_key_id()
                     # signed_message = self.signer.create_signed_message(document_content.encode(), signature, public_key_id)
                     # self.window["document_output"].update(f"Document signed successfully!\nSigned Message:\n{signed_message.hex()}")
+                        
+            if event == "Go To Verify Signature":
+                self.window.hide()
+                verifier_gui = DocumentVerifierGUI()
+                verifier_gui.run()
+                self.window.close()
 
         self.window.close()
 
