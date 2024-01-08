@@ -18,10 +18,10 @@ class Login:
             [sg.Text('', font=('Helvetica', 10))],
             [sg.Text('Email:       '), sg.InputText(key='email')],
             [sg.Text('', font=('Helvetica', 7))],
-            [sg.Text('Password:'), sg.InputText(key='password')],
+            [sg.Text('Password:'), sg.InputText(key='password', password_char="*")],
             [sg.Text('', font=('Helvetica', 7))],
             [sg.Text('Confirm Password:', key='confirm_password-label', visible=False),
-             sg.InputText(key='confirm_password', visible=False)],
+             sg.InputText(key='confirm_password', password_char="*", visible=False)],
             [sg.Text('', font=('Helvetica', 10))],
             [sg.Button('Login'), sg.Button('Register')]
         ]

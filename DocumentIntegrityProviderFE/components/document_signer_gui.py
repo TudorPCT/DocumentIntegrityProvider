@@ -5,7 +5,7 @@ from cryptography.hazmat.primitives import hashes
 
 class DocumentSignerGUI:
     def __init__(self):
-        # self.signer = DigitalSigner()
+        # self.signer = DocumentSigner()
 
         sg.theme('Default1')
         sg.set_options(font=('Helvetica', 15))
@@ -30,13 +30,10 @@ class DocumentSignerGUI:
 
             if event == "Sign Document":
                 document_file = values["document_file"]
+
                 if document_file:
-                    with open(document_file, 'r') as file:
-                        document_content = file.read()
-                    # signature = self.signer.generate_signature(document_content)
-                    # public_key_id = self.signer.get_public_key_id()
-                    # signed_message = self.signer.create_signed_message(document_content.encode(), signature, public_key_id)
-                    # self.window["document_output"].update(f"Document signed successfully!\nSigned Message:\n{signed_message.hex()}")
+                    # self.signer.sign_document(document_file)
+                    pass
                         
             if event == "Go To Verify Signature":
                 self.window.hide()

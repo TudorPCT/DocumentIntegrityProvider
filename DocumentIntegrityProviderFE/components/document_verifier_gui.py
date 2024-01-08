@@ -29,9 +29,7 @@ class DocumentVerifierGUI:
             if event == "Verify Signature":
                 signed_message_file = values["signed_message_file"]
                 if signed_message_file:
-                    with open(signed_message_file, 'rb') as file:
-                        signed_message = file.read()
-                    self.verifier.verify_signed_message(signed_message)
+                    # self.verifier.verify_signed_document(signed_message_file)
                     self.window["verification_output"].update("Verification result printed in console.")
 
             if event == "Go To Sign Document":
