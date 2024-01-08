@@ -1,3 +1,5 @@
+import os
+import requests
 import PySimpleGUI as sg
 from crpyography.DocumentVerifier import DocumentVerifier
 from components.document_signer_gui import DocumentSignerGUI
@@ -29,8 +31,17 @@ class DocumentVerifierGUI:
             if event == "Verify Signature":
                 signed_message_file = values["signed_message_file"]
                 if signed_message_file:
-                    # self.verifier.verify_signed_document(signed_message_file)
+                    userId = self.verifier.verify_signed_document(signed_message_file)
                     self.window["verification_output"].update("Verification result printed in console.")
+
+                    if userId:
+                        email_response = self.get_user_email_by_id(userId)
+                        if email_response.status_code == 200:
+                            email = email_response.text
+                            self.window["verification_output"].update(f"User ID: {userId}, Email: {email}")
+                        else:
+                            self.window["verification_output"].update(email_response.status_code)
+
 
             if event == "Go To Sign Document":
                 self.window.hide()
@@ -40,6 +51,11 @@ class DocumentVerifierGUI:
 
         self.window.close()
 
+
+    def get_user_email_by_id(self, user_id):
+        url = os.environ['api_base_link'] + f"/api/users/{user_id}/email"
+        response = requests.get(url)
+        return response
 
 if __name__ == "__main__":
     app = DocumentVerifierGUI()
