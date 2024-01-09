@@ -36,6 +36,7 @@ class Login:
                 from components.document_signer_gui import DocumentSignerGUI
                 self.auth_service.login(values['email'], values['password'])
                 sg.popup('Login successful!', title='Success')
+                self.window.close()
                 app = DocumentSignerGUI()
                 app.run()
             elif event == 'Register':
@@ -46,6 +47,7 @@ class Login:
                 self.window['confirm_password'].update(visible=True)
                 main_gui.current_component = Register(main_gui.window)
                 main_gui.run()
+                self.window.close()
                 return
 
         self.window.close()

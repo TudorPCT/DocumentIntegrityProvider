@@ -14,7 +14,8 @@ class DocumentVerifierGUI:
         sg.set_options(font=('Helvetica', 15))
 
         layout = [
-            [sg.Text("Select Signed Message File:"), sg.Input(key="signed_message_file"), sg.FileBrowse()],
+            [sg.Text("Select Signed Message File:")],
+            [sg.Input(key="signed_message_file", size=(35, 10)), sg.FileBrowse()],
             [sg.Button("Verify Signature"), sg.Button("Exit")],
             [sg.Multiline(key="verification_output", size=(40, 5))],
             [sg.Button("Go To Sign Document")]
@@ -38,12 +39,13 @@ class DocumentVerifierGUI:
                         email_response = self.get_user_email_by_id(user_id)
                         if email_response.status_code == 200:
                             email = email_response.text
-                            self.window["verification_output"]\
-                                .update(f"Document signature is valid!\nUser ID: {user_id}, Email: {email}")
+                            self.window["verification_output"].update(
+                                f"Document signature is valid!\nUser ID: {user_id.decode('ascii')}\nEmail: {email}"
+                            )
                         else:
                             self.window["verification_output"].update(email_response.status_code)
-                else:
-                    self.window["verification_output"].update("Error occurred while verifying the document!")
+                    else:
+                        self.window["verification_output"].update("Error occurred while verifying the document!")
 
             if event == "Go To Sign Document":
                 self.window.hide()
@@ -56,7 +58,7 @@ class DocumentVerifierGUI:
     @auth_monitor
     @auth_interceptor
     def get_user_email_by_id(self, user_id, session):
-        url = os.environ['api_base_link'] + f"/api/users/{user_id}/email"
+        url = os.environ['api_base_link'] + f"/api/users/{user_id.decode('ascii')}/email"
         response = session.get(url)
         return response
 

@@ -10,7 +10,8 @@ class DocumentSignerGUI:
         sg.set_options(font=('Helvetica', 15))
 
         layout = [
-            [sg.Text("Select Document File:"), sg.Input(key="document_file"), sg.FileBrowse()],
+            [sg.Text("Select Document File:")], 
+            [sg.Input(key="document_file", size=(35, 10)), sg.FileBrowse()],
             [sg.Button("Sign Document"), sg.Button("Exit")],
             [sg.Multiline(key="document_output", size=(40, 5))],
             [sg.Button("Go To Verify Signature")]
