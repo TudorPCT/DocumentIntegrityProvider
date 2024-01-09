@@ -18,8 +18,8 @@ public class UserController {
 
     @GetMapping("/{userId}/email")
     public ResponseEntity<String> getUserEmailById(@PathVariable String userId) {
-        return userRepository.findEmailById(userId)
-                .map(email -> ResponseEntity.ok().body(email))
+        return userRepository.findById(userId)
+                .map(user -> ResponseEntity.ok(user.getEmail()))
                 .orElse(ResponseEntity.notFound().build());
     }
 }
