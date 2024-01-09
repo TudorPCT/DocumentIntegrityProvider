@@ -1,11 +1,10 @@
 import PySimpleGUI as sg
 from crpyography.DocumentSigner import DocumentSigner
-from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives import hashes
+
 
 class DocumentSignerGUI:
     def __init__(self):
-        # self.signer = DocumentSigner()
+        self.signer = DocumentSigner()
 
         sg.theme('Default1')
         sg.set_options(font=('Helvetica', 15))
@@ -32,8 +31,11 @@ class DocumentSignerGUI:
                 document_file = values["document_file"]
 
                 if document_file:
-                    # self.signer.sign_document(document_file)
-                    pass
+                    if self.signer.sign_document(document_file):
+                        self.window["document_output"].update("Document signed successfully!")
+                    else:
+                        self.window["document_output"].update("Error occurred while signing the document!")
+                    continue
                         
             if event == "Go To Verify Signature":
                 self.window.hide()

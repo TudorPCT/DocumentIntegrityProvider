@@ -43,3 +43,4 @@ class DocumentSigner:
         modified_name = name + '-signed' + extension
         new_document_path = os.path.join(directory, modified_name)
         write_signature_to_file(signed_message, new_document_path)
+        return True

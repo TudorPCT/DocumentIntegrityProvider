@@ -1,8 +1,9 @@
 import os
-import requests
 import PySimpleGUI as sg
 from crpyography.DocumentVerifier import DocumentVerifier
 from components.document_signer_gui import DocumentSignerGUI
+from interceptors.auth_interceptor import auth_interceptor
+from interceptors.auth_monitor import auth_monitor
 
 
 class DocumentVerifierGUI:
@@ -31,17 +32,18 @@ class DocumentVerifierGUI:
             if event == "Verify Signature":
                 signed_message_file = values["signed_message_file"]
                 if signed_message_file:
-                    userId = self.verifier.verify_signed_document(signed_message_file)
-                    self.window["verification_output"].update("Verification result printed in console.")
+                    user_id = self.verifier.verify_signed_document(signed_message_file)
 
-                    if userId:
-                        email_response = self.get_user_email_by_id(userId)
+                    if user_id:
+                        email_response = self.get_user_email_by_id(user_id)
                         if email_response.status_code == 200:
                             email = email_response.text
-                            self.window["verification_output"].update(f"User ID: {userId}, Email: {email}")
+                            self.window["verification_output"]\
+                                .update(f"Document signature is valid!\nUser ID: {user_id}, Email: {email}")
                         else:
                             self.window["verification_output"].update(email_response.status_code)
-
+                else:
+                    self.window["verification_output"].update("Error occurred while verifying the document!")
 
             if event == "Go To Sign Document":
                 self.window.hide()
@@ -51,11 +53,13 @@ class DocumentVerifierGUI:
 
         self.window.close()
 
-
-    def get_user_email_by_id(self, user_id):
+    @auth_monitor
+    @auth_interceptor
+    def get_user_email_by_id(self, user_id, session):
         url = os.environ['api_base_link'] + f"/api/users/{user_id}/email"
-        response = requests.get(url)
+        response = session.get(url)
         return response
+
 
 if __name__ == "__main__":
     app = DocumentVerifierGUI()
