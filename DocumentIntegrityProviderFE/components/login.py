@@ -76,15 +76,6 @@ class Login:
                 app = DocumentSignerGUI()
                 app.run()
             elif event == 'Register':
-                if not self.validate_email(values['email']):
-                    sg.popup('Invalid email format!', title='Error')
-                    continue
-                elif not self.validate_password(values['password']):
-                    sg.popup('Invalid password format!\n' 
-                             'Password must be at least 8 characters long, contain at least '
-                             'one uppercase letter, one lowercase letter, one digit and one '
-                             'special character', title='Error')
-                    continue
                 from components.register import Register
                 main_gui = MainGUI()
                 self.window['title'].update(value='Register')
@@ -94,7 +85,5 @@ class Login:
                 main_gui.run()
                 self.window.close()
                 return
-            else:
-                self.on_typing(event, values[event])
 
         self.window.close()
