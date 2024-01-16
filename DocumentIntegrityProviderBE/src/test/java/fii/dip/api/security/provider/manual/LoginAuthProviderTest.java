@@ -1,11 +1,10 @@
-package fii.dip.api.security.provider;
+package fii.dip.api.security.provider.manual;
 
 import fii.dip.api.models.Role;
 import fii.dip.api.models.User;
-import fii.dip.api.security.authentication.AuthenticationToken;
 import fii.dip.api.security.model.UserSecurityDetails;
+import fii.dip.api.security.provider.LoginAuthProvider;
 import fii.dip.api.security.services.UserSecurityDetailsService;
-import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -19,11 +18,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.ArgumentMatchers.any;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 class LoginAuthProviderTest {

@@ -18,7 +18,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+    protected boolean shouldNotFilter(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
         return token == null;
     }

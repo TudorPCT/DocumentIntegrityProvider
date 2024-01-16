@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fii.dip.api.security.services.JwtUtil;
 import fii.dip.api.security.services.UserSecurityDetailsService;
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +28,12 @@ public class LoginAuthFilter extends OncePerRequestFilter {
 
 
     @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+    protected boolean shouldNotFilter(HttpServletRequest request) {
         return !request.getServletPath().equals("/api/auth/login");
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException {
         JsonNode jsonNode = objectMapper.readTree(request.getInputStream());
 
         String email = jsonNode.get("email").asText();

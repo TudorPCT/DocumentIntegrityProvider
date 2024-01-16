@@ -5,7 +5,6 @@ import fii.dip.api.security.filters.LoginAuthFilter;
 import fii.dip.api.security.filters.TokenAuthenticationFilter;
 import fii.dip.api.security.provider.LoginAuthProvider;
 import fii.dip.api.security.provider.TokenAuthProvider;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

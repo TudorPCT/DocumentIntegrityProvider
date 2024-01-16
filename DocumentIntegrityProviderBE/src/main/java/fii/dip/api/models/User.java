@@ -15,6 +15,7 @@ import java.util.List;
 
 import static jakarta.persistence.TemporalType.TIMESTAMP;
 
+@SuppressWarnings("JpaDataSourceORMInspection")
 @Entity
 @Data
 @NoArgsConstructor

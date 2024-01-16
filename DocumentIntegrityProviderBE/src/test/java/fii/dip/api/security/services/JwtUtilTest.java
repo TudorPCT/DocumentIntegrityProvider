@@ -9,7 +9,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
 
@@ -69,7 +68,6 @@ class JwtUtilTest {
     }
 
     private User userBuilder() {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         return User.builder()
                 .id("1")
                 .email("cosmin@gmail.com")
